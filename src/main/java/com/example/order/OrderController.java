@@ -13,6 +13,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -56,10 +57,10 @@ public class OrderController {
     		int order_id = Integer.parseInt(strs[index]);
     		int product_code = Integer.parseInt(strs[index+1]);
     		String product_name = strs[index+2];
-    		double price_per_unit = Double.parseDouble(strs[index+3]);
+    		int price_per_unit = Integer.parseInt(strs[index+3]);
     		int unit = Integer.parseInt(strs[index+4]);
     		float vat = Float.parseFloat(strs[index+5]);
-    		double total_price = Double.parseDouble(strs[index+6]);
+    		int total_price = Integer.parseInt(strs[index+6]);
         	Order o = new Order();
         	o.setOrderID(order_id);
         	o.setProduct_code(product_code);
@@ -78,5 +79,53 @@ public class OrderController {
 	 public List<Order> getAllOrder() {
 		   return productservice.getAllOrder();
 		}
-
+	 
+	 @Autowired
+	 private OrdertService orderService;
+	 
+//	 @GetMapping("/search1")
+//	 public List<Order> searchOrderByName(@RequestParam("product_name") String name){
+//		 return orderService.findByproduct_name(name);
+//	 }
+//
+//	 @GetMapping("/search2")
+//	 public List<Order> searchOrderById(@RequestParam("orderID") Integer id){
+//		 return orderService.findByOrderID(id);
+//	 }
+//	 
+//	 @GetMapping("/search3")
+//	 public List<Order> searchAll(@RequestParam(required = false, value="orderID") Integer id, @RequestParam(required = false, value="product_name") String name, @RequestParam(required = false, value="product_code") Integer code){
+//		 return orderService.findByOrderIDOrproduct_nameOrproduct_code(id, name, code);
+//	 }
+	 
+	 @GetMapping("/search")
+	 public List<Order> searchAllCol(@RequestParam("keyword") String key){
+		 Integer id;
+		 Integer code;
+		 String name = key;
+		 Integer ppu;
+		 Integer unit;
+		 Float vat;
+		 Integer total;
+		 try {
+			 id = Integer.parseInt(key);
+			 code = Integer.parseInt(key);
+			 ppu = Integer.parseInt(key);
+			 unit = Integer.parseInt(key);
+			 vat = Float.parseFloat(key);
+			 total = Integer.parseInt(key);
+		 }
+		 catch(NumberFormatException e){
+			 id = null;
+			 code = null;
+			 ppu = null;
+			 unit = null;
+			 vat = null;
+			 total = null;
+		 }
+		 
+		 
+		 
+		 return orderService.findByAllCol(id, code, name, ppu, unit,vat,total);
+	 }
 }

@@ -21,16 +21,16 @@ public class Order {
 	@Column(name = "product_name")
     private String product_name;
 	@Column(name = "price_per_unit")
-    private double price_per_unit;
+    private  int price_per_unit;
 	@Column(name = "unit")
     private int unit;
 	@Column(name = "vat")
 	private float vat;
 	@Column(name = "total_price")
-    private double total_price;
+    private int total_price;
     
-    public Order(int orderID, int product_code, String product_name, double price_per_unit, int unit, float vat,
-			double total_price) {
+    public Order(int orderID, int product_code, String product_name, int price_per_unit, int unit, float vat,
+			int total_price) {
 		super();
 		this.orderID = orderID;
 		this.product_code = product_code;
@@ -76,10 +76,10 @@ public class Order {
   	public void setProduct_name(String product_name) {
   		this.product_name = product_name;
   	}
-  	public double getPrice_per_unit() {
+  	public int getPrice_per_unit() {
   		return price_per_unit;
   	}
-  	public void setPrice_per_unit(double price_per_unit) {
+  	public void setPrice_per_unit(int price_per_unit) {
   		this.price_per_unit = price_per_unit;
   	}
   	public int getUnit() {
@@ -94,10 +94,10 @@ public class Order {
   	public void setVat(float vat) {
   		this.vat = vat;
   	}
-  	public double getTotal_price() {
+  	public int getTotal_price() {
   		return total_price;
   	}
-  	public void setTotal_price(double total_price) {
+  	public void setTotal_price(int total_price) {
   		this.total_price = total_price;
   	}
 

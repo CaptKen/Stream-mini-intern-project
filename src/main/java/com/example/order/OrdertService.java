@@ -13,4 +13,18 @@ public class OrdertService {
 	public List<Order> getAllOrder() {
 		return  orderRepository.findAll();
 		}
+	
+//	public List<Order> findByproduct_name(String name) {
+//		return  orderRepository.searchByproduct_nameLike(name);
+//		}
+//	
+//	public List<Order> findByOrderID(Integer id) {
+//		return  orderRepository.searchByOrderIDLike(id);
+//		}
+//	public List<Order> findByOrderIDOrproduct_nameOrproduct_code(Integer id, String name, Integer code) {
+//		return  orderRepository.search(id, name, code);
+//		}
+	public List<Order> findByAllCol(Integer id, Integer code, String name, Integer ppu, Integer unit, Float vat, Integer total){
+		return orderRepository.search0(id, code, name, ppu, unit, vat, total);
+	}
 }
