@@ -2,7 +2,10 @@ package com.example.order;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+import java.io.File;
 import java.io.IOException;
+import java.io.FileNotFoundException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -30,6 +33,7 @@ public class OrderController {
     {
         StringBuilder contentBuilder = new StringBuilder();
         String filePath = "order(s).txt";
+        
         try (Stream<String> stream = Files.lines( Paths.get(filePath), StandardCharsets.UTF_8)) 
         {
             stream.forEach(s -> contentBuilder.append(s));
@@ -42,12 +46,27 @@ public class OrderController {
     }
 	
 	List<Order> orders = new ArrayList();
-	@PostMapping("/create")
-	public void createOrdersObject() {
+	@GetMapping("/create")
+	public void createOrdersObject(@RequestParam("textFile")  File txt) {
 		
-		String plainText = readTextFile();
+		
+//		String plainText = readTextFile();
 //        String testText = "0002|000002|AirMax|5600.00|30|13.00|168000.00|0003|000003|Air Jordan|5600.00|10|13.00|560000.00";
-		String[] strs = plainText.split("\\|");
+		
+		String[] strs = null;
+		try {
+		      File myObj = txt;
+		      Scanner myReader = new Scanner(myObj);
+		      while (myReader.hasNextLine()) {
+		        String data = myReader.nextLine();
+		        strs = data.split("\\|");
+//		        System.out.println(data);
+		      }
+		      myReader.close();
+		    } catch (FileNotFoundException e) {
+		      System.out.println("An error occurred.");
+		      e.printStackTrace();
+		    }
 		
 		
 		
@@ -123,8 +142,6 @@ public class OrderController {
 			 vat = null;
 			 total = null;
 		 }
-		 
-		 
 		 
 		 return orderService.findByAllCol(id, code, name, ppu, unit,vat,total);
 	 }
