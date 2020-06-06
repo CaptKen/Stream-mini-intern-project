@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 04, 2020 at 05:52 PM
+-- Generation Time: Jun 06, 2020 at 10:43 AM
 -- Server version: 10.4.11-MariaDB
--- PHP Version: 7.3.18
+-- PHP Version: 7.2.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -39,8 +39,9 @@ CREATE TABLE `company` (
 INSERT INTO `company` (`id`, `company_name`) VALUES
 (1, 'Stream'),
 (2, 'Wongnai'),
-(3, 'KBTG'),
-(4, 'Exon');
+(3, 'apple'),
+(4, 'nike'),
+(5, 'adidas');
 
 -- --------------------------------------------------------
 
@@ -50,22 +51,29 @@ INSERT INTO `company` (`id`, `company_name`) VALUES
 
 CREATE TABLE `order_product` (
   `id` int(4) NOT NULL,
-  `orderID` int(4) NOT NULL,
-  `product_code` int(6) NOT NULL,
+  `orderID` char(4) NOT NULL,
+  `product_code` char(6) NOT NULL,
   `product_name` varchar(50) NOT NULL,
+  `product` char(255) NOT NULL,
+  `company` char(255) NOT NULL,
   `price_per_unit` int(10) NOT NULL,
   `unit` int(4) NOT NULL,
-  `vat` float(5,2) NOT NULL,
-  `total_price` int(20) NOT NULL
+  `vat` float NOT NULL,
+  `total_price` int(20) NOT NULL,
+  `active` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `order_product`
 --
 
-INSERT INTO `order_product` (`id`, `orderID`, `product_code`, `product_name`, `price_per_unit`, `unit`, `vat`, `total_price`) VALUES
-(1, 2, 2, 'Teskhghkghkgt', 5600, 30, 13.00, 168000),
-(2, 3, 3, 'Air Jordan', 5600, 10, 13.00, 56000);
+INSERT INTO `order_product` (`id`, `orderID`, `product_code`, `product_name`, `product`, `company`, `price_per_unit`, `unit`, `vat`, `total_price`, `active`) VALUES
+(1, '0001', '000001', 'Test', 'Something', 'Stream', 5, 30, 13, 150, 0),
+(2, '0002', '000002', 'Air Jordan 1', 'Shoe', 'nike', 5600, 10, 13, 56000, 0),
+(3, '0004', '000004', 'Air Max 270', 'Shoe', 'nike', 5500, 20, 13, 110000, 0),
+(4, '0005', '000005', 'Ultra Boost', 'Shoe', 'adidas', 6000, 25, 13, 150000, 0),
+(5, '0006', '000006', 'MacBook Pro', 'laptop', 'apple', 42900, 10, 13, 429000, 0),
+(6, '0007', '000007', 'iPhone', 'smart phone', 'apple', 39900, 15, 13, 598500, 0);
 
 -- --------------------------------------------------------
 
@@ -84,7 +92,9 @@ CREATE TABLE `product` (
 
 INSERT INTO `product` (`id`, `product_name`) VALUES
 (1, 'Shoe'),
-(2, 'Computer');
+(2, 'Something'),
+(3, 'laptop'),
+(4, 'smart phone');
 
 --
 -- Indexes for dumped tables
@@ -103,12 +113,6 @@ ALTER TABLE `order_product`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `product`
---
-ALTER TABLE `product`
-  ADD PRIMARY KEY (`id`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -116,7 +120,7 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT for table `order_product`
 --
 ALTER TABLE `order_product`
-  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
