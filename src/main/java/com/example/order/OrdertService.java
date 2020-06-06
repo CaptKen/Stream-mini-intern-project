@@ -27,10 +27,16 @@ public class OrdertService {
 	public List<Order> findByAllCol(String id, String code, String name, String pro, String com, Integer ppu, Integer unit, Float vat, Integer total){
 		return orderRepository.search0(id, code, name, pro, com, ppu, unit, vat, total);
 		}
-	public List<Order> getActive(){
-		return orderRepository.activeOrder();
+	public List<Order> getShowing(){
+		return orderRepository.showingOrder();
 	}
-	public List<Order> getInActive(){
-		return orderRepository.inActiveOrder();
+	public void setToActive(){
+		 orderRepository.activeOrder();
 	}
+	public void setToShowing(Integer id, String orderID) {
+		orderRepository.setNotShowing(orderID);
+		orderRepository.setShowing(id);
+		
+	}
+
 }

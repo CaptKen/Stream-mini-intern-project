@@ -36,15 +36,32 @@ public class Order {
     private int total_price;
     
 	@Column(name = "active")
-    private int active;
+    private boolean active;
+	
+	@Column(name = "showInHome", columnDefinition="default 0")
+    private boolean showInHome;
 
     
     public Order() {
     	
 	}
-    
 
-
+	public Order(int id, String orderID, String product_code, String product_name, String product, String company,
+			int price_per_unit, int unit, float vat, int total_price, boolean active, boolean showInHome) {
+		super();
+		this.id = id;
+		this.orderID = orderID;
+		this.product_code = product_code;
+		this.product_name = product_name;
+		this.product = product;
+		this.company = company;
+		this.price_per_unit = price_per_unit;
+		this.unit = unit;
+		this.vat = vat;
+		this.total_price = total_price;
+		this.active = active;
+		this.showInHome = showInHome;
+	}
 
 	public int getId() {
 		return id;
@@ -115,45 +132,53 @@ public class Order {
   	public void setTotal_price(int total_price) {
   		this.total_price = total_price;
   	}
-
-
-	public int getActive() {
+	public boolean getActive() {
 		return active;
 	}
 
-
-	public void setActive(int active) {
+	public void setActive(boolean active) {
 		this.active = active;
 	}
 
+	public boolean getShowInHome() {
+		return showInHome;
+	}
 
-
+	public void setShowInHome(boolean showInHome) {
+		this.showInHome = showInHome;
+	}
 
 	@Override
 	public String toString() {
 		return "Order [id=" + id + ", orderID=" + orderID + ", product_code=" + product_code + ", product_name="
 				+ product_name + ", product=" + product + ", company=" + company + ", price_per_unit=" + price_per_unit
-				+ ", unit=" + unit + ", vat=" + vat + ", total_price=" + total_price + ", active=" + active + "]";
+				+ ", unit=" + unit + ", vat=" + vat + ", total_price=" + total_price + ", active=" + active
+				+ ", showInHome=" + showInHome + "]";
 	}
 
 
 
 
-	public Order(int id, String orderID, String product_code, String product_name, String product, String company,
-			int price_per_unit, int unit, float vat, int total_price, int active) {
-		super();
-		this.id = id;
-		this.orderID = orderID;
-		this.product_code = product_code;
-		this.product_name = product_name;
-		this.product = product;
-		this.company = company;
-		this.price_per_unit = price_per_unit;
-		this.unit = unit;
-		this.vat = vat;
-		this.total_price = total_price;
-		this.active = active;
-	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

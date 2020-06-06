@@ -1,15 +1,24 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Angular js</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  <title>Angular js</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+  </script>
 </head>
-<body >
-    <div ng-app="myapp" ng-controller="Mycontroller" class="dropdown">
+
+<body>
+  <div ng-app="myapp" ng-controller="Mycontroller" class="dropdown">
     {{data.productName}}
     <div>
       <label for="input-file">Specify a file:</label><br />
@@ -19,120 +28,214 @@
     <form action="http://localhost:8080/create" method="POST">
       <textarea id="content-target" name="inText"></textarea><br>
 
-        <select ng-model="product_model" name="productName" onchange="myFunction()">
-            <option ng-repeat="Product in product" class="dropdown-item">{{Product.productName}}</option>
-        </select>
-        <br>
-        <select ng-model="product_model1" name="companyName" onchange="myFunction()">
-            <option ng-repeat="Product in company">{{Product.companyName}}</option>
-        </select>
-        <br><button type="submit">submit</button>
-        <p>Your favorite browser is: <input type="text" id="demo" size="20"></p>
+      <select ng-model="product_model" name="productName">
+        <option ng-repeat="Product in product" class="dropdown-item">{{Product.productName}}</option>
+      </select>
+      <br>
+      <select ng-model="product_model1" name="companyName">
+        <option ng-repeat="Product in company">{{Product.companyName}}</option>
+      </select>
+      <br><button type="submit">submit</button>
+      <p>Your favorite browser is: <input type="text" id="demo" size="20"></p>
     </form>
 
     <form>
-                <input type="text" name="keyword" ng-model="search">
-                <label>Search</label>
-            </form>
+      <input type="text" name="keyword" ng-model="search">
+      <label>Search</label>
+    </form>
     <table class="table">
-        <thead>
+      <thead>
         <tr>
-            <th scppe="col">ID</th>
-            <th scope="col">orderID</th>
-            <th scope="col">product_code</th>
-            <th scope="col">product_name</th>
-            <th scope="col">price_per_unit</th>
-            <th scope="col">unit</th>
-            <th scope="col">vat</th>
-            <th scope="col">total_price</th>
-            <th scope="col"></th>
-            <th scope="col"></th>
+          <th scppe="col">ID</th>
+          <th scope="col">orderID</th>
+          <th scope="col">product_code</th>
+          <th scope="col">product_name</th>
+          <th scope="col">price_per_unit</th>
+          <th scope="col">unit</th>
+          <th scope="col">vat</th>
+          <th scope="col">total_price</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
         </tr>
-        </thead>
-          <tbody>
-    <tr ng-repeat="Order in order | filter : search">
-      <th>{{Order.id}}</th>
-      <td>{{Order.orderID}}</td>
-      <td>{{Order.product_code}}</td>
-      <td>{{Order.product_name}}</td>
-      <td>{{Order.price_per_unit}}</td>
-      <td>{{Order.unit}}</td>
-      <td>{{Order.vat}}</td>
-      <td>{{Order.total_price}}</td>
-      <td>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter{{Order.id}}">
-                More Detail
-          </button>
-        <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter{{Order.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">More Detail</h5>
-<!--         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      </thead>
+      <tbody>
+        <tr ng-repeat="Order in order | filter : search">
+          <th>{{Order.id}}</th>
+          <td>{{Order.orderID}}</td>
+          <td>{{Order.product_code}}</td>
+          <td>{{Order.product_name}}</td>
+          <td>{{Order.price_per_unit}}</td>
+          <td>{{Order.unit}}</td>
+          <td>{{Order.vat}}</td>
+          <td>{{Order.total_price}}</td>
+          <td>
+            <button type="button" class="btn btn-primary" data-toggle="modal"
+              data-target="#exampleModalCenter{{Order.id}}">
+              More Detail
+            </button>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModalCenter{{Order.id}}" tabindex="-1" role="dialog"
+              aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">More Detail</h5>
+                    <!--         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span> -->
-        </button>
-      </div>
-      <div class="modal-body">
-        <table class="table">
-                    <thead>
-        <tr>
-            <th scope="col">ID</th>
-            <td>{{Order.id}}</td>
-        </tr>
-        <tr>
-            <th scope="col">Product Name</th>
-            <td>{{Order.product_name}}</td>
-        </tr>
-        <tr>
-            <th scope="col">Product ID</th>
-            <td>{{Order.product_code}}</td>
-        </tr>
-        <tr>
-          <th scope="col">Product</th>
-          <td>{{Order.product}}</td>
-      </tr>
-      <tr>
-        <th scope="col">Company</th>
-        <td>{{Order.company}}</td>
-    </tr>
-        <tr>
-            <th scope="col">Price</th>
-            <td>{{Order.price_per_unit}}</td>
-        </tr>
-        <tr>
-            <th scope="col">Vat</th>
-            <td>{{Order.vat}}</td>
-        </tr>
-        <tr>
-            <th scope="col">Amount</th>
-            <td>{{Order.unit}}</td>
-        </tr>
-        <tr>
-            <th scope="col">Total</th>
-            <td>{{Order.total_price}}</td>
-        </tr>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col">ID</th>
+                          <td>{{Order.id}}</td>
+                        </tr>
+                        <tr>
+                          <th scope="col">Product Name</th>
+                          <td>{{Order.product_name}}</td>
+                        </tr>
+                        <tr>
+                          <th scope="col">Product ID</th>
+                          <td>{{Order.product_code}}</td>
+                        </tr>
+                        <tr>
+                          <th scope="col">Product</th>
+                          <td>{{Order.product}}</td>
+                        </tr>
+                        <tr>
+                          <th scope="col">Company</th>
+                          <td>{{Order.company}}</td>
+                        </tr>
+                        <tr>
+                          <th scope="col">Price</th>
+                          <td>{{Order.price_per_unit}}</td>
+                        </tr>
+                        <tr>
+                          <th scope="col">Vat</th>
+                          <td>{{Order.vat}}</td>
+                        </tr>
+                        <tr>
+                          <th scope="col">Amount</th>
+                          <td>{{Order.unit}}</td>
+                        </tr>
+                        <tr>
+                          <th scope="col">Total</th>
+                          <td>{{Order.total_price}}</td>
+                        </tr>
 
-        </thead>
-        </table>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-        <!-- Modal -->
-      </td>
-      <td><button type="button" class="btn btn-success">Change Detail</button></td>
-    </tr>
-  </tbody>
+                      </thead>
+                    </table>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Modal -->
+          </td>
+          <td>
+            <!-- Change -->
+            <button type="button" class="btn btn-Danger" data-toggle="modal"
+              data-target="#exampleModalCenter1{{Order.id}}">
+              Change Detail
+            </button>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModalCenter1{{Order.id}}" tabindex="-1" role="dialog"
+              aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <form action="http://localhost:8080/order/show" method="GET">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLongTitle">Change Detail</h5>
+                      <!--         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span> -->
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                          <tr>
+                            <th scope="col"></th>
+                            <td ng-repeat="Orders in allOrder" ng-if="Order.orderID == Orders.orderID"><input
+                                type="radio" id="OderChange" name="ID" value="{{Orders.id}}"></td>
+                                <input type="hidden" name="orderID" value="{{Order.orderID}}">
+                          </tr>
+                          <tr>
+
+                            <th scope="col">ID</th>
+                            <td ng-repeat="Orders in allOrder" ng-if="Order.orderID == Orders.orderID">{{Orders.id}}
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="col">OrderID</th>
+                            <td ng-repeat="Orders in allOrder" ng-if="Order.orderID == Orders.orderID">
+                              {{Orders.orderID}}</td>
+                          </tr>
+                          <tr>
+                            <th scope="col">Product Name</th>
+                            <td ng-repeat="Orders in allOrder" ng-if="Order.orderID == Orders.orderID">
+                              {{Orders.product_name}}</td>
+                          </tr>
+                          <tr>
+                            <th scope="col">Product ID</th>
+                            <td ng-repeat="Orders in allOrder" ng-if="Order.orderID == Orders.orderID">
+                              {{Orders.product_code}}</td>
+                          </tr>
+                          <tr>
+                            <th scope="col">Product</th>
+                            <td ng-repeat="Orders in allOrder" ng-if="Order.orderID == Orders.orderID">
+                              {{Orders.product}}</td>
+                          </tr>
+                          <tr>
+                            <th scope="col">Company</th>
+                            <td ng-repeat="Orders in allOrder" ng-if="Order.orderID == Orders.orderID">
+                              {{Orders.company}}</td>
+                          </tr>
+                          <tr>
+                            <th scope="col">Price</th>
+                            <td ng-repeat="Orders in allOrder" ng-if="Order.orderID == Orders.orderID">
+                              {{Orders.price_per_unit}}</td>
+                          </tr>
+                          <tr>
+                            <th scope="col">Vat</th>
+                            <td ng-repeat="Orders in allOrder" ng-if="Order.orderID == Orders.orderID">{{Orders.vat}}
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="col">Amount</th>
+                            <td ng-repeat="Orders in allOrder" ng-if="Order.orderID == Orders.orderID">{{Orders.unit}}
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="col">Total</th>
+                            <td ng-repeat="Orders in allOrder" ng-if="Order.orderID == Orders.orderID">
+                              {{Orders.total_price}}</td>
+                          </tr>
+                        </thead>
+
+                      </table>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="submit" class="btn btn-primary">Comfirm</button>
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </td> <!-- change -->
+        </tr>
+      </tbody>
     </table>
     <div>
 
-        </div>
     </div>
-        
+
+  </div>
+
 </body>
 
 
@@ -140,69 +243,72 @@
 
 
 <script>
-var app=angular.module("myapp", []);
-app.controller("Mycontroller",function($http,$rootScope){
-$http.get("http://localhost:8080/product").
+  var app = angular.module("myapp", []);
+  app.controller("Mycontroller", function ($http, $rootScope) {
+    $http.get("http://localhost:8080/product").
     then(function (response) {
-        $rootScope.product = response.data;
+      $rootScope.product = response.data;
     });
-$http.get("http://localhost:8080/company").
+    $http.get("http://localhost:8080/company").
     then(function (response) {
-        $rootScope.company = response.data;
+      $rootScope.company = response.data;
     });
-$http.get("http://localhost:8080/order/active").
+    $http.get("http://localhost:8080/showingOrder").
     then(function (response) {
-        $rootScope.order = response.data;
+      $rootScope.order = response.data;
     });
-});
+    $http.get("http://localhost:8080/order").
+    then(function (response) {
+      $rootScope.allOrder = response.data;
+    });
+  });
 </script>
 
 <script>
-function myFunction() {
-  var pro = document.getElementById("productID");
-  var com = document.getElementById("companyID");
+  // function myFunction() {
+  //   var pro = document.getElementById("productID");
+  //   var com = document.getElementById("companyID");
 
-  document.getElementsByName("productName").value = pro.options[pro.selectedIndex].text;
-  document.getElementsByName("companyName").value = com.options[com.selectedIndex].text;
-}
+  //   document.getElementsByName("productName").value = pro.options[pro.selectedIndex].text;
+  //   document.getElementsByName("companyName").value = com.options[com.selectedIndex].text;
+  // }
 
-// function myFunction1() {
-//   var mylist = document.getElementById("myList");
-//   document.getElementById("demo").value = mylist.options[mylist.selectedIndex].text;
-// }
+  // function myFunction1() {
+  //   var mylist = document.getElementById("myList");
+  //   document.getElementById("demo").value = mylist.options[mylist.selectedIndex].text;
+  // }
 
 
-      document.getElementById("input-file").addEventListener("change", getFile);
+  document.getElementById("input-file").addEventListener("change", getFile);
 
-      function getFile(event) {
-        const input = event.target;
-        if ("files" in input && input.files.length > 0) {
-          var arr;
-          placeFileContent(
-            document.getElementById("content-target"),
-            input.files[0]
-          );
-        }
-      }
+  function getFile(event) {
+    const input = event.target;
+    if ("files" in input && input.files.length > 0) {
+      var arr;
+      placeFileContent(
+        document.getElementById("content-target"),
+        input.files[0]
+      );
+    }
+  }
 
-      function placeFileContent(target, file) {
-        readFileContent(file)
-          .then(content => {
-            target.value = content.split("|");
-            // console.log(content.split("|"));
-          })
-          .catch(error => console.log(error));
-      }
+  function placeFileContent(target, file) {
+    readFileContent(file)
+      .then(content => {
+        target.value = content.split("|");
+        // console.log(content.split("|"));
+      })
+      .catch(error => console.log(error));
+  }
 
-      function readFileContent(file) {
-        const reader = new FileReader();
-        return new Promise((resolve, reject) => {
-          reader.onload = event => resolve(event.target.result);
-          reader.onerror = error => reject(error);
-          reader.readAsText(file);
-        });
-      }
-
+  function readFileContent(file) {
+    const reader = new FileReader();
+    return new Promise((resolve, reject) => {
+      reader.onload = event => resolve(event.target.result);
+      reader.onerror = error => reject(error);
+      reader.readAsText(file);
+    });
+  }
 </script>
 
 

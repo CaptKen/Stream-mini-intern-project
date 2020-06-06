@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 06, 2020 at 10:43 AM
+-- Generation Time: Jun 06, 2020 at 10:02 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.30
 
@@ -60,20 +60,32 @@ CREATE TABLE `order_product` (
   `unit` int(4) NOT NULL,
   `vat` float NOT NULL,
   `total_price` int(20) NOT NULL,
-  `active` tinyint(1) NOT NULL DEFAULT 0
+  `active` tinyint(1) NOT NULL DEFAULT 0,
+  `show_in_home` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `order_product`
 --
 
-INSERT INTO `order_product` (`id`, `orderID`, `product_code`, `product_name`, `product`, `company`, `price_per_unit`, `unit`, `vat`, `total_price`, `active`) VALUES
-(1, '0001', '000001', 'Test', 'Something', 'Stream', 5, 30, 13, 150, 0),
-(2, '0002', '000002', 'Air Jordan 1', 'Shoe', 'nike', 5600, 10, 13, 56000, 0),
-(3, '0004', '000004', 'Air Max 270', 'Shoe', 'nike', 5500, 20, 13, 110000, 0),
-(4, '0005', '000005', 'Ultra Boost', 'Shoe', 'adidas', 6000, 25, 13, 150000, 0),
-(5, '0006', '000006', 'MacBook Pro', 'laptop', 'apple', 42900, 10, 13, 429000, 0),
-(6, '0007', '000007', 'iPhone', 'smart phone', 'apple', 39900, 15, 13, 598500, 0);
+INSERT INTO `order_product` (`id`, `orderID`, `product_code`, `product_name`, `product`, `company`, `price_per_unit`, `unit`, `vat`, `total_price`, `active`, `show_in_home`) VALUES
+(30, '0001', '000001', 'Test', 'Something', 'Wongnai', 5, 30, 13, 150, 1, 0),
+(31, '0002', '000002', 'Air Jordan 1', 'Something', 'Stream', 5600, 10, 13, 56000, 1, 0),
+(32, '0004', '000004', 'Air Max 270', 'Something', 'Stream', 5500, 20, 13, 110000, 1, 0),
+(33, '0005', '000005', 'Ultra Boost', 'Shoe', 'adidas', 6000, 25, 13, 150000, 1, 0),
+(34, '0006', '000006', 'MacBook Pro', 'laptop', 'apple', 42900, 10, 13, 429000, 1, 0),
+(35, '0001', '000001', 'Test', 'Something', 'Stream', 5, 30, 13, 150, 1, 0),
+(36, '0002', '000002', 'Air Jordan 1', 'Something', 'Stream', 5600, 10, 13, 56000, 1, 0),
+(37, '0004', '000004', 'Air Max 270', 'Something', 'Stream', 5500, 20, 13, 110000, 1, 0),
+(38, '0005', '000005', 'Ultra Boost', 'Something', 'Stream', 6000, 25, 13, 150000, 1, 0),
+(39, '0006', '000006', 'MacBook Pro', 'Something', 'Stream', 42900, 10, 13, 429000, 1, 0),
+(40, '0007', '000007', 'iPhone', 'Something', 'Stream', 39900, 15, 13, 598500, 1, 0),
+(41, '0001', '000001', 'Test', 'Something', 'Stream', 5, 30, 13, 150, 1, 1),
+(42, '0002', '000002', 'Air Jordan 1', 'Something', 'Stream', 5600, 10, 13, 56000, 1, 1),
+(43, '0004', '000004', 'Air Max 270', 'Something', 'Stream', 5500, 20, 13, 110000, 1, 0),
+(44, '0005', '000005', 'Ultra Boost', 'Something', 'Stream', 6000, 25, 13, 150000, 1, 0),
+(45, '0006', '000006', 'MacBook Pro', 'Something', 'Stream', 42900, 10, 13, 429000, 1, 0),
+(46, '0007', '000007', 'iPhone', 'Something', 'Stream', 39900, 15, 13, 598500, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -120,7 +132,7 @@ ALTER TABLE `order_product`
 -- AUTO_INCREMENT for table `order_product`
 --
 ALTER TABLE `order_product`
-  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
