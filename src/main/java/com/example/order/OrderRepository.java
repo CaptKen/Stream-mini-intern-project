@@ -20,7 +20,7 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
 //	@Query("SELECT o FROM Order o WHERE o.orderID = :orderiD  OR o.product_name LIKE %:product_name% OR o.product_code = :product_code")
 //	List<Order> search(@Param("orderiD") Integer id, @Param("product_name") String name, @Param("product_code") Integer code);
 	
-	@Query("SELECT o FROM Order o WHERE o.orderID LIKE :id OR o.product_code LIKE :code OR o.product_name LIKE %:name% OR o.price_per_unit LIKE :ppu OR o.unit LIKE :unit OR o.vat LIKE :vat OR o.total_price LIKE :total")
-	List<Order> search0(@Param("id") Integer id, @Param("code") Integer code, @Param("name") String name, @Param("ppu") Integer ppu,@Param("unit") Integer unit,@Param("vat") Float vat, @Param("total") Integer total);
+	@Query("SELECT o FROM Order o WHERE o.orderID LIKE %:id% OR o.product_code LIKE %:code% OR o.product_name LIKE %:name% OR o.product LIKE %:pro% OR o.company LIKE %:com% OR o.price_per_unit LIKE :ppu OR o.unit LIKE :unit OR o.vat LIKE :vat OR o.total_price LIKE :total")
+	List<Order> search0(@Param("id") String id, @Param("code") String code, @Param("name") String name, @Param("pro") String pro, @Param("com") String com, @Param("ppu") Integer ppu,@Param("unit") Integer unit,@Param("vat") Float vat, @Param("total") Integer total);
 }
 

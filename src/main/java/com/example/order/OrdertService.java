@@ -24,7 +24,7 @@ public class OrdertService {
 //	public List<Order> findByOrderIDOrproduct_nameOrproduct_code(Integer id, String name, Integer code) {
 //		return  orderRepository.search(id, name, code);
 //		}
-	public List<Order> findByAllCol(Integer id, Integer code, String name, Integer ppu, Integer unit, Float vat, Integer total){
-		return orderRepository.search0(id, code, name, ppu, unit, vat, total);
+	public List<Order> findByAllCol(String id, String code, String name, String pro, String com, Integer ppu, Integer unit, Float vat, Integer total){
+		return orderRepository.search0(id, code, name, pro, com, ppu, unit, vat, total);
 	}
 }

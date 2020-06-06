@@ -15,11 +15,17 @@ public class Order {
 	private int id;
 
 	@Column(name = "orderID")
-    private int orderID;
+    private String orderID;
 	@Column(name = "product_code")
-    private int product_code;
+    private String product_code;
 	@Column(name = "product_name")
     private String product_name;
+	
+	@Column(name = "product")
+    private String product;
+	@Column(name = "company")
+    private String company;
+	
 	@Column(name = "price_per_unit")
     private  int price_per_unit;
 	@Column(name = "unit")
@@ -29,28 +35,29 @@ public class Order {
 	@Column(name = "total_price")
     private int total_price;
     
-    public Order(int orderID, int product_code, String product_name, int price_per_unit, int unit, float vat,
-			int total_price) {
-		super();
-		this.orderID = orderID;
-		this.product_code = product_code;
-		this.product_name = product_name;
-		this.price_per_unit = price_per_unit;
-		this.unit = unit;
-		this.vat = vat;
-		this.total_price = total_price;
-	}
+
     
     public Order() {
     	
 	}
     
-	@Override
-	public String toString() {
-		return "Product [orderID=" + orderID + ", product_code=" + product_code + ", product_name=" + product_name
-				+ ", price_per_unit=" + price_per_unit + ", unit=" + unit + ", vat=" + vat + ", total_price="
-				+ total_price + "]";
+
+	public Order(int id, String orderID, String product_code, String product_name, String product, String company,
+			int price_per_unit, int unit, float vat, int total_price) {
+		super();
+		this.id = id;
+		this.orderID = orderID;
+		this.product_code = product_code;
+		this.product_name = product_name;
+		this.product = product;
+		this.company = company;
+		this.price_per_unit = price_per_unit;
+		this.unit = unit;
+		this.vat = vat;
+		this.total_price = total_price;
 	}
+
+
 	public int getId() {
 		return id;
 	}
@@ -58,16 +65,16 @@ public class Order {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getOrderID() {
+	public String getOrderID() {
   		return orderID;
   	}
-  	public void setOrderID(int orderID) {
+  	public void setOrderID(String orderID) {
   		this.orderID = orderID;
   	}
-  	public int getProduct_code() {
+  	public String getProduct_code() {
   		return product_code;
   	}
-  	public void setProduct_code(int product_code) {
+  	public void setProduct_code(String product_code) {
   		this.product_code = product_code;
   	}
   	public String getProduct_name() {
@@ -76,7 +83,27 @@ public class Order {
   	public void setProduct_name(String product_name) {
   		this.product_name = product_name;
   	}
-  	public int getPrice_per_unit() {
+  	public String getProduct() {
+		return product;
+	}
+
+
+	public void setProduct(String product) {
+		this.product = product;
+	}
+
+
+	public String getCompany() {
+		return company;
+	}
+
+
+	public void setCompany(String company) {
+		this.company = company;
+	}
+
+
+	public int getPrice_per_unit() {
   		return price_per_unit;
   	}
   	public void setPrice_per_unit(int price_per_unit) {
@@ -100,6 +127,14 @@ public class Order {
   	public void setTotal_price(int total_price) {
   		this.total_price = total_price;
   	}
+
+
+	@Override
+	public String toString() {
+		return "Order [id=" + id + ", orderID=" + orderID + ", product_code=" + product_code + ", product_name="
+				+ product_name + ", product=" + product + ", company=" + company + ", price_per_unit=" + price_per_unit
+				+ ", unit=" + unit + ", vat=" + vat + ", total_price=" + total_price + "]";
+	}
 
     
 
