@@ -150,7 +150,7 @@ $http.get("http://localhost:8080/company").
     then(function (response) {
         $rootScope.company = response.data;
     });
-$http.get("http://localhost:8080/order").
+$http.get("http://localhost:8080/order/active").
     then(function (response) {
         $rootScope.order = response.data;
     });
