@@ -22,5 +22,11 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
 	
 	@Query("SELECT o FROM Order o WHERE o.orderID LIKE %:id% OR o.product_code LIKE %:code% OR o.product_name LIKE %:name% OR o.product LIKE %:pro% OR o.company LIKE %:com% OR o.price_per_unit LIKE :ppu OR o.unit LIKE :unit OR o.vat LIKE :vat OR o.total_price LIKE :total")
 	List<Order> search0(@Param("id") String id, @Param("code") String code, @Param("name") String name, @Param("pro") String pro, @Param("com") String com, @Param("ppu") Integer ppu,@Param("unit") Integer unit,@Param("vat") Float vat, @Param("total") Integer total);
+
+	@Query("select o from Order o where o.active = 1")
+	List<Order> activeOrder();
+	
+	@Query("select o from Order o where o.active = 0")
+	List<Order> inActiveOrder();
 }
 

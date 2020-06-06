@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 @EnableAutoConfiguration
 public class OrderController {
 	@Autowired
-    OrdertService productservice;
+    OrdertService orderservice;
 	@Autowired
 	private OrderRepository pR;
 	
@@ -126,7 +126,17 @@ public class OrderController {
    
 	 @GetMapping("/order")
 	 public List<Order> getAllOrder() {
-		   return productservice.getAllOrder();
+		   return orderservice.getAllOrder();
+		}
+	 
+	 @GetMapping("/order/active")
+	 public List<Order> getActiveOrder() {
+		   return orderservice.getActive();
+		}
+	 
+	 @GetMapping("/order/inActive")
+	 public List<Order> getInActiveOrder() {
+		   return orderservice.getInActive();
 		}
 	 
 	 @Autowired

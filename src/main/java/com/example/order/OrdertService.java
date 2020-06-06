@@ -26,5 +26,11 @@ public class OrdertService {
 //		}
 	public List<Order> findByAllCol(String id, String code, String name, String pro, String com, Integer ppu, Integer unit, Float vat, Integer total){
 		return orderRepository.search0(id, code, name, pro, com, ppu, unit, vat, total);
+		}
+	public List<Order> getActive(){
+		return orderRepository.activeOrder();
+	}
+	public List<Order> getInActive(){
+		return orderRepository.inActiveOrder();
 	}
 }

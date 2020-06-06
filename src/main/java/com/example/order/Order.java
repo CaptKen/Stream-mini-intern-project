@@ -35,6 +35,8 @@ public class Order {
 	@Column(name = "total_price")
     private int total_price;
     
+	@Column(name = "active")
+    private int active;
 
     
     public Order() {
@@ -42,20 +44,6 @@ public class Order {
 	}
     
 
-	public Order(int id, String orderID, String product_code, String product_name, String product, String company,
-			int price_per_unit, int unit, float vat, int total_price) {
-		super();
-		this.id = id;
-		this.orderID = orderID;
-		this.product_code = product_code;
-		this.product_name = product_name;
-		this.product = product;
-		this.company = company;
-		this.price_per_unit = price_per_unit;
-		this.unit = unit;
-		this.vat = vat;
-		this.total_price = total_price;
-	}
 
 
 	public int getId() {
@@ -129,12 +117,46 @@ public class Order {
   	}
 
 
+	public int getActive() {
+		return active;
+	}
+
+
+	public void setActive(int active) {
+		this.active = active;
+	}
+
+
+
+
 	@Override
 	public String toString() {
 		return "Order [id=" + id + ", orderID=" + orderID + ", product_code=" + product_code + ", product_name="
 				+ product_name + ", product=" + product + ", company=" + company + ", price_per_unit=" + price_per_unit
-				+ ", unit=" + unit + ", vat=" + vat + ", total_price=" + total_price + "]";
+				+ ", unit=" + unit + ", vat=" + vat + ", total_price=" + total_price + ", active=" + active + "]";
 	}
+
+
+
+
+	public Order(int id, String orderID, String product_code, String product_name, String product, String company,
+			int price_per_unit, int unit, float vat, int total_price, int active) {
+		super();
+		this.id = id;
+		this.orderID = orderID;
+		this.product_code = product_code;
+		this.product_name = product_name;
+		this.product = product;
+		this.company = company;
+		this.price_per_unit = price_per_unit;
+		this.unit = unit;
+		this.vat = vat;
+		this.total_price = total_price;
+		this.active = active;
+	}
+
+
+
 
     
 
