@@ -14,6 +14,8 @@ import java.util.stream.Stream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.MediaType;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,6 +31,7 @@ import ch.qos.logback.core.Context;
 
 @RestController
 @EnableAutoConfiguration
+@EnableScheduling
 public class OrderController {
 	@Autowired
     OrdertService orderservice;
@@ -82,7 +85,8 @@ public class OrderController {
 		   return orderservice.getShowing();
 		}
 	 
-	 @GetMapping("/active")
+//	 @GetMapping("/active")
+	 @Scheduled(cron = "0 0/1 * * * *")
 	 public void setToActiveOrder() {
 		    orderservice.setToActive();
 		}
