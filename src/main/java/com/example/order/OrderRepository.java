@@ -21,23 +21,34 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
 //	@Query("SELECT o FROM Order o WHERE o.orderID LIKE :orderiD")
 //    List<Order> searchByOrderIDLike(@Param("orderiD") Integer id);
 //	
-//	@Query("SELECT o FROM Order o WHERE o.orderID = :orderiD  OR o.product_name LIKE %:product_name% OR o.product_code = :product_code")
-//	List<Order> search(@Param("orderiD") Integer id, @Param("product_name") String name, @Param("product_code") Integer code);
+	@Query("SELECT o FROM Order o WHERE o.orderID like :orderiD")
+	List<Order> search(@Param("orderiD") String id);
 	
 	@Query("SELECT o FROM Order o WHERE o.orderID LIKE %:id% OR o.product_code LIKE %:code% OR o.product_name LIKE %:name% OR o.product LIKE %:pro% OR o.company LIKE %:com% OR o.price_per_unit LIKE :ppu OR o.unit LIKE :unit OR o.vat LIKE :vat OR o.total_price LIKE :total")
 	List<Order> search0(@Param("id") String id, @Param("code") String code, @Param("name") String name, @Param("pro") String pro, @Param("com") String com, @Param("ppu") Integer ppu,@Param("unit") Integer unit,@Param("vat") Float vat, @Param("total") Integer total);
 
-	@Query("select o from Order o where o.showInHome = 1 AND o.active = 1")
+	@Query("select o from Order o where o.showInHome = 1 AND o.active = 1 order by o.orderID, o.showInHome")
 	List<Order> showingOrder();
+	
+	@Query("select o from Order o where o.active = 1 order by o.showInHome DESC")
+	List<Order> showingChange();
+	
 	
 	@Modifying
 	@Transactional
 	@Query("update Order o set o.active=1 where 1 = 1")
 	void activeOrder();
+	
 	@Modifying
 	@Transactional
 	@Query("update Order o set o.showInHome=1 where o.id = :id")
 	void setShowing(@Param("id") Integer id);
+	
+	@Modifying
+	@Transactional
+	@Query("update Order o set o.showInHome=1 where o.orderID like :id")
+	void setShowingByOrderId(@Param("id") String id);
+	
 	@Modifying
 	@Transactional
 	@Query("update Order o set o.showInHome=0 where o.orderID like :orderID")

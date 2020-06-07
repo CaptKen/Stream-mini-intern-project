@@ -13,7 +13,9 @@ import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,7 +43,7 @@ public class OrderController {
 	
 	List<Order> orders = new ArrayList();
 	@PostMapping("/create")
-	public void createOrdersObject(@RequestParam("inText") String[] txt, @RequestParam("productName") String product, @RequestParam("companyName") String company) {		
+	public ResponseEntity createOrdersObject(@RequestParam("inText") String[] txt, @RequestParam("productName") String product, @RequestParam("companyName") String company) {		
 		
 		
 		String[] strs = txt;	
@@ -66,8 +68,13 @@ public class OrderController {
         	o.setVat(vat);
         	o.setTotal_price(total_price);
         	orderRepository.save(o);
+        	System.out.println(orderservice.findByOrderID(order_id).size());
+        	if(orderservice.findByOrderID(order_id).size() == 1) {
+        		orderservice.setToShowingAtBegin(order_id);
+            }
         	index += 7;
         }
+        return ResponseEntity.ok(HttpStatus.OK);
     }
 	
 	@GetMapping("/order/show")
@@ -82,12 +89,13 @@ public class OrderController {
 	 
 	 @GetMapping("/showingOrder")
 	 public List<Order> showOrder() {
-		   return orderservice.getShowing();
+		 return orderservice.getShowing();
 		}
 	 
 //	 @GetMapping("/active")
 	 @Scheduled(cron = "0 0/1 * * * *")
 	 public void setToActiveOrder() {
+
 		    orderservice.setToActive();
 		}
 	 
