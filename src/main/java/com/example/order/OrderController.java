@@ -79,7 +79,7 @@ public class OrderController {
         	index += 7;
         }
         RedirectView redirectView  = new RedirectView();
-        redirectView.setUrl("http://localhost:8080/drop.html");
+        redirectView.setUrl("http://localhost:3000/index.html");
         return redirectView;
 	}
 	
@@ -89,7 +89,7 @@ public class OrderController {
 	public RedirectView setOrderActive(@RequestParam("ID") int id, @RequestParam("orderID") String orderID) {
 		orderservice.setToShowing(id, orderID);
 	       RedirectView redirectView  = new RedirectView();
-	        redirectView.setUrl("http://localhost:8080/drop.html");
+	        redirectView.setUrl("http://localhost:3000/index.html");
 	        return redirectView;
 	}
    

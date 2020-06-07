@@ -1,0 +1,43 @@
+.navBar {
+  background-color: #85cec2;
+  margin-bottom: 80px;
+}
+body {
+  background-color: #fafafa;
+}
+h5 {
+  color: white;
+  font-family: "Times New Roman", Times, serif;
+}
+p {
+  color: white;
+}
+.styleFile {
+  border: width 5;
+  border-radius: 40px;
+  border-style: dashed;
+  border-color: #85cec2;
+  margin: 15px;
+  padding: 90px;
+}
+.styleBox {
+  border: width 5;
+  border-radius: 40px;
+  border-color: #85cec2;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+.box {
+  background-color: white;
+}
+.image {
+  width: 100px;
+  height: 100px;
+}
+.input {
+  background-color: #85cec2;
+  color: white;
+  font-family: "Times New Roman", Times, serif;
+  /* text-align: center; */
+  /* width: 300px; */
+}

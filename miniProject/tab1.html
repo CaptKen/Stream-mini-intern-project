@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="angular.min.js"></script>
+    <script src="angular-ui-router.min.js"></script>
+    <script src="app.js"></script>
+    <link rel="stylesheet" href="logo.css" />
+  </head>
+
+  <body ng-app="RoutingApp">
+    <!-- <div ng-controller="ShoppingListAddController as itemAdder">
+        <input type="text" ng-model="itemAdder.itemName" placeholder="item name">
+        <input type="text" ng-model="itemAdder.itemQuantity" placeholder="quantity">
+        <button ng-click="itemAdder.addItem()">Add item</button>
+    </div>
+    <div ng-controller="ShoppingListShowController as showList">
+        <ol>
+            <li ng-repeat="item in showList.items">
+                {{item.quantity}} of {{item.name}}
+            </li>
+        </ol>
+    </div> -->
+    <div ng-controller="myApi" class="dropdown">
+      <div class="row justify-content-center mb-5">
+        <div class="styleBox col-5 box">
+          <div class="row justify-content-center">
+            <div class="styleFile col-12">
+<div class="row justify-content-center">
+  <div class="col-3" style="margin-bottom: 30px;">
+    <img src="pngwing.com.png" style="width: 120px; height: 120px;" />
+  </div>
+</div>
+<div class="row justify-content-center">
+  <div class="input-group col-5">
+    <div class="custom-file" >
+      <input
+        type="file"
+        class="custom-file-input"
+        id="input-file"
+      />
+      <label class="custom-file-label input" for="input-file"
+        >Choose file</label
+      >
+    </div>
+
+</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <form action="http://localhost:8080/create" method="POST">
+        <input id="content-target" name="inText" hidden></input><br />
+        <div class="form">
+<div class="row justify-content-center">
+  <div class="col-3 mb-5">
+    <select
+      ng-model="product_model"
+      class="form-control"
+      name="productName"
+      style="background-color: #85cec2;color: white; border-radius: 10px; height: 50px;width: 400px;"
+
+    >
+    <option value="" selected disabled >Select Product</option>
+      <option ng-repeat="Product in product" class="dropdown-item"
+        >{{Product.productName}}</option
+      >
+    </select>
+  </div>
+</div>
+<div class="row justify-content-center">
+  <div class="col-3 mb-5">
+    <select
+      ng-model="product_model1"
+      class="form-control"
+      name="companyName"
+      style="background-color:#85cec2;color: white;border-radius: 10px;height: 50px;width: 400px;"
+    >
+    <option value="" selected disabled >Select Company</option>
+      <option ng-repeat="Product in company"
+        >{{Product.companyName}}</option
+      >
+    </select>
+  </div>
+</div>
+          <div class="row justify-content-center">     
+                 <div class="col-1">
+            <button type="submit" style="border-radius: 10px;background-color: #85cec2;width: 100px;color: white;border-color:  #85cec2;text-align: center;">Submit</button>
+          </div>
+        </div>
+
+        </div>
+      </form>
+    </div>
+    <script>
+      document.getElementById("input-file").addEventListener("change", getFile);
+      function getFile(event) {
+        const input = event.target;
+        if ("files" in input && input.files.length > 0) {
+          var arr;
+          placeFileContent(
+            document.getElementById("content-target"),
+            input.files[0]
+          );
+        }
+      }
+
+      function placeFileContent(target, file) {
+        readFileContent(file)
+          .then((content) => {
+            target.value = content.split("|");
+          })
+          .catch((error) => console.log(error));
+      }
+
+      function readFileContent(file) {
+        const reader = new FileReader();
+        return new Promise((resolve, reject) => {
+          reader.onload = (event) => resolve(event.target.result);
+          reader.onerror = (error) => reject(error);
+          reader.readAsText(file);
+        });
+      }
+    </script>
+  </body>
+</html>
