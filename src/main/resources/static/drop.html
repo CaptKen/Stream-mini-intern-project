@@ -15,6 +15,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
     integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
   </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/d3js/5.15.1/d3.min.js"></script>
 </head>
 
 <body>
@@ -147,7 +148,7 @@
               <div class="modal-dialog modal-dialog-centered" role="document">
               <!-- <iframe name="hiddenFrame" frameborder="5"></iframe> -->
               <!-- target="hiddenFrame" -->
-                <form action="http://localhost:8080/order/show"  method="GET">
+                <form id="changeForm" action="http://localhost:8080/order/show"  method="GET">
                   <div class="modal-content">
                     <div class="modal-header">
                       <h5 class="modal-title" id="exampleModalLongTitle">Change Detail</h5>
@@ -221,6 +222,7 @@
                       </table>
                     </div>
                     <div class="modal-footer">
+                      <!-- <input id="submit-form" type="button" class="btn btn-primary" value="Confirm"> -->
                       <button type="submit" class="btn btn-primary">Comfirm</button>
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
@@ -267,6 +269,9 @@
 </script>
 
 <script>
+
+
+
   // function myFunction() {
   //   var pro = document.getElementById("productID");
   //   var com = document.getElementById("companyID");
@@ -314,6 +319,8 @@
     });
   }
 </script>
+
+
 
 
 </html>

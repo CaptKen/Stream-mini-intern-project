@@ -18,14 +18,18 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.view.RedirectView;
 
 import ch.qos.logback.core.Context;
 
@@ -42,9 +46,9 @@ public class OrderController {
 	
 	
 	List<Order> orders = new ArrayList();
+//	@RequestMapping(value= "/create", method = RequestMethod.POST)
 	@PostMapping("/create")
-	public void createOrdersObject(@RequestParam("inText") String[] txt, @RequestParam("productName") String product, @RequestParam("companyName") String company) {		
-		
+	public RedirectView createOrdersObject(@RequestParam("inText") String[] txt, @RequestParam("productName") String product, @RequestParam("companyName") String company, Model model) {		
 		
 		String[] strs = txt;	
 		int index = 0;
@@ -74,11 +78,19 @@ public class OrderController {
             }
         	index += 7;
         }
-    }
+        RedirectView redirectView  = new RedirectView();
+        redirectView.setUrl("http://localhost:8080/drop.html");
+        return redirectView;
+	}
+	
+
 	
 	@GetMapping("/order/show")
-	public void setOrderActive(@RequestParam("ID") int id, @RequestParam("orderID") String orderID) {
+	public RedirectView setOrderActive(@RequestParam("ID") int id, @RequestParam("orderID") String orderID) {
 		orderservice.setToShowing(id, orderID);
+	       RedirectView redirectView  = new RedirectView();
+	        redirectView.setUrl("http://localhost:8080/drop.html");
+	        return redirectView;
 	}
    
 	 @GetMapping("/order")
