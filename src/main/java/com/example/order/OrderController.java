@@ -43,7 +43,7 @@ public class OrderController {
 	
 	List<Order> orders = new ArrayList();
 	@PostMapping("/create")
-	public ResponseEntity createOrdersObject(@RequestParam("inText") String[] txt, @RequestParam("productName") String product, @RequestParam("companyName") String company) {		
+	public void createOrdersObject(@RequestParam("inText") String[] txt, @RequestParam("productName") String product, @RequestParam("companyName") String company) {		
 		
 		
 		String[] strs = txt;	
@@ -74,7 +74,6 @@ public class OrderController {
             }
         	index += 7;
         }
-        return ResponseEntity.ok(HttpStatus.OK);
     }
 	
 	@GetMapping("/order/show")
