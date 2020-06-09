@@ -76,7 +76,8 @@
       <div class="mb-5 mt-5">
         <div style="margin: auto; height: 40px; width: 320px;">
           <select ng-model="product_model" class="form-control" name="productName"
-            style="background-color: #85cec2;color: white; border-radius: 10px; height: 50px;width: 100%; box-shadow: 0 8px 8px -8px rgba(0, 0, 0, 0.3)" required>
+            style="background-color: #85cec2;color: white; border-radius: 10px; height: 50px;width: 100%; box-shadow: 0 8px 8px -8px rgba(0, 0, 0, 0.3)"
+            required>
             <option value="" selected disabled>Select Product</option>
             <option ng-repeat="Product in product" class="dropdown-item">{{Product.productName}}</option>
           </select>
@@ -85,7 +86,8 @@
       <div class="mb-5">
         <div style="margin: auto; height: 40px; width: 320px;">
           <select ng-model="product_model1" class="form-control" name="companyName"
-            style="background-color:#85cec2;color: white;border-radius: 10px;height: 50px;width: 100%; box-shadow: 0 8px 8px -8px rgba(0, 0, 0, 0.3)" required>
+            style="background-color:#85cec2;color: white;border-radius: 10px;height: 50px;width: 100%; box-shadow: 0 8px 8px -8px rgba(0, 0, 0, 0.3)"
+            required>
             <option value="" selected disabled>Select Company</option>
             <option ng-repeat="Product in company">{{Product.companyName}}</option>
           </select>
@@ -107,7 +109,7 @@
                 border: none;
                 box-shadow: 0 8px 8px -5px rgba(0, 0, 0, 0.3);
               ">
-              
+
         </input>
       </div>
   </div>
