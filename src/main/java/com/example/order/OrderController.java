@@ -81,6 +81,7 @@ public class OrderController {
         RedirectView redirectView  = new RedirectView();
         redirectView.setUrl("http://localhost:3000/index.html");
         return redirectView;
+//        return "forward:http://localhost:3000/index.html#!/tab2";
 	}
 	
 
@@ -89,7 +90,7 @@ public class OrderController {
 	public RedirectView setOrderActive(@RequestParam("ID") int id, @RequestParam("orderID") String orderID) {
 		orderservice.setToShowing(id, orderID);
 	       RedirectView redirectView  = new RedirectView();
-	        redirectView.setUrl("http://localhost:3000/index.html");
+	        redirectView.setUrl("http://localhost:3000/index.html#!/tab2");
 	        return redirectView;
 	}
    
@@ -105,7 +106,7 @@ public class OrderController {
 	 
 //	 @GetMapping("/active")
 //	 @Scheduled(cron = "0 0/5  12-17 * * *")
-	 @Scheduled(cron = "0 0/5  * * * *")
+	 @Scheduled(cron = "0 0/1  * * * *")
 	 public void setToActiveOrder() {
 
 		    orderservice.setToActive();

@@ -27,33 +27,37 @@
       src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
       integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
       crossorigin="anonymous"
+      
     ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>CRAVE SOME SHABU</title>
   </head>
 
   <body>
     <div ng-app="RoutingApp">
       <div class="container-fluid">
         <div class="row navBar">
-          <div class="col-sm-10">
-            <div class="col">
+          <div class="col-sm-10" >
+            <!-- <div class="col">
               <h5>CRAVE SOME</h5>
             </div>
             <div class="col">
               <h5>SHABU</h5>
+            </div> -->
+            <div class="col-4" style="margin-bottom: 30px;">
+              <img class="pointer" ui-sref="tab1" src="nobg.png" style="width: 90px; height: 90px;" />
             </div>
           </div>
-          <div class="col-sm-1 align-self-center">
+          <div class="col-sm-1 align-self-center" style="top:-10px">
             <p
-              ui-sref="tab1"
-              style="font-family: 'Times New Roman', Times, serif;"
+              ui-sref="tab1" class="pointer"
             >
               Upload Files
             </p>
           </div>
-          <div class="col-sm-1 align-self-center">
+          <div class="col-sm-1 align-self-center" style="top:-10px">
             <p
-              ui-sref="tab2"
-              style="font-family: 'Times New Roman', Times, serif;"
+              ui-sref="tab2" class="pointer"
             >
               Order
             </p>
@@ -61,41 +65,6 @@
         </div>
       </div>
       <ui-view></ui-view>
-      <div>
-        <label for="input-file">Specify a file:</label><br />
-        <input type="file" id="input-file" />
-      </div>
     </div>
-
-    <script>
-      document.getElementById("input-file").addEventListener("change", getFile);
-      function getFile(event) {
-        const input = event.target;
-        if ("files" in input && input.files.length > 0) {
-          var arr;
-          placeFileContent(
-            document.getElementById("content-target"),
-            input.files[0]
-          );
-        }
-      }
-
-      function placeFileContent(target, file) {
-        readFileContent(file)
-          .then((content) => {
-            target.value = content.split("|");
-          })
-          .catch((error) => console.log(error));
-      }
-
-      function readFileContent(file) {
-        const reader = new FileReader();
-        return new Promise((resolve, reject) => {
-          reader.onload = (event) => resolve(event.target.result);
-          reader.onerror = (error) => reject(error);
-          reader.readAsText(file);
-        });
-      }
-    </script>
   </body>
 </html>
