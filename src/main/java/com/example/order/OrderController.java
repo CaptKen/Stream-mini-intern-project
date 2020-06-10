@@ -43,12 +43,14 @@ public class OrderController {
     OrdertService orderservice;
 	@Autowired
 	private OrderRepository orderRepository;
+	@Autowired
+	LineNotifyService lineNotifyService;
 	
 	
 	List<Order> orders = new ArrayList();
 //	@RequestMapping(value= "/create", method = RequestMethod.POST)
 	@PostMapping("/create")
-	public RedirectView createOrdersObject(@RequestParam("inText") String[] txt, @RequestParam("productName") String product, @RequestParam("companyName") String company, Model model) {		
+	public RedirectView createOrdersObject(@RequestParam("inText") String[] txt, @RequestParam("productName") String product, @RequestParam("companyName") String company, Model model) throws Exception {		
 		
 		String[] strs = txt;	
 		int index = 0;
@@ -78,6 +80,7 @@ public class OrderController {
             }
         	index += 7;
         }
+        lineNotifyService.sendLineNotifyMessages("สร้าง order เรียบร้อยละนะ");
         RedirectView redirectView  = new RedirectView();
         redirectView.setUrl("http://localhost:3000/index.html");
         return redirectView;
@@ -87,8 +90,10 @@ public class OrderController {
 
 	
 	@GetMapping("/order/show")
-	public RedirectView setOrderActive(@RequestParam("ID") int id, @RequestParam("orderID") String orderID) {
+	public RedirectView setOrderActive(@RequestParam("ID") int id, @RequestParam("orderID") String orderID) throws Exception {
 		orderservice.setToShowing(id, orderID);
+//		lineNotifyService.sendLineNotifyMessages("Update OrderID "+ orderID + "ละนะ");
+		lineNotifyService.sendLineNotifySticker("Update OrderID "+ orderID + " ละนะ", 2, 28);
 	       RedirectView redirectView  = new RedirectView();
 	        redirectView.setUrl("http://localhost:3000/index.html#!/tab2");
 	        return redirectView;
@@ -106,10 +111,11 @@ public class OrderController {
 	 
 //	 @GetMapping("/active")
 //	 @Scheduled(cron = "0 0/5  12-17 * * *")
-	 @Scheduled(cron = "0 0/1  * * * *")
-	 public void setToActiveOrder() {
+	 @Scheduled(cron = "0 0/5  * * * *")
+	 public void setToActiveOrder() throws Exception {
 
 		    orderservice.setToActive();
+		    lineNotifyService.sendLineNotifySticker("Active Order ที่  Upload ใหม่ ละนะ", 1, 423);
 		}
 	 
 	 @Autowired
